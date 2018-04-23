@@ -21,6 +21,7 @@ Funciones deplegadas
     notification
 
 Invocación de las funciones
+
     ./notification.py --text="El despligue de en las instancias de produccion se ha realizado con exito" --footer="WAR 2.6.12" deploy
     ./notification.py --text="Ocurrio un problema con el ultimo WAR no inicia session" --footer="WAR 2.6.12" --status="danger" deploy
 
