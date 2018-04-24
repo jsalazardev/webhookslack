@@ -2,7 +2,7 @@
 import requests
 
 # set variables globals
-webhook_url = 'https://hooks.slack.com/services/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'
+pathConfig='../config.ini'
 headers = {'Content-Type': 'application/json'}
 
 
@@ -23,8 +23,24 @@ def build_message(text, title, footer, status):
         }]
     }
 
+def read_parameters():
+  params={}
+  config=read_config([pathConfig])
+  if(config==None):
+    return
+  try:
+    env=config.get('branch','env')
+    url=config.get(env+'.webhook', 'url')
+    params={'url':url}
+    except configparser.NoSectionError, configparser.NoOptionError:
+        print ('Lo parametros indicados no existen')
+    return params
 
 def send_message_to_slack(text, title, footer, status):
-    slack_data = build_message(text, title, footer, status)
-    response = requests.post(webhook_url, json=slack_data, headers=headers)
-    verify_result(response)
+  params=read_parameters()
+  if(config==None):
+    print('Lo sentimos, no se encontraron los parametros iniciales')
+    return
+  slack_data = build_message(text, title, footer, status)
+  response = requests.post(webhook_url, json=slack_data, headers=headers)
+  verify_result(response)
