@@ -1,12 +1,12 @@
-#import library
+# import library
 import configparser
 import os
 
 
-def read_config(cfg_files):
-    if(cfg_files != None):
+def read_config(cfg_file):
+    config = None
+    if cfg_file is not None:
         config = configparser.ConfigParser()
-        for i, cfg_file in enumerate(cfg_files):
-            if(os.path.exists(cfg_file)):
-                config.read(cfg_file)
-        return config
+        if os.path.exists(cfg_file):
+            config.read(cfg_file)
+    return config
