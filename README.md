@@ -1,38 +1,36 @@
-------------------------
-    NotificationSlack
-------------------------
+# NotificationSlack
 
-- Install library
+## Install library
 
-python -m pip install requests --user --no-warn-script-location
-python -m pip install fire --user --no-warn-script-location
-python -m pip install configparser --user --no-warn-script-location
+- python -m pip install requests --user --no-warn-script-location
+- python -m pip install fire --user --no-warn-script-location
+- python -m pip install configparser --user --no-warn-script-location
 
-- Add permission run after clone repository
+## Add permission run after clone repository
 
-chmod +x notification.py
+- chmod +x notification.py
 
-------------------------
-    Modo de uso
-------------------------
+# Modo de uso
 
-- Una vez otorgando los permisos para ejecucion, los parametros que reciben son:
-    text        - Requerido
-    title       - Opcional
-    footer      - Opcional
-    status      - Opcional
-    username    - Opcional
+## Parametros de la aplicación
 
-    Posibles valores:
-    status      -'good'(valor por default*), 'warning', 'danger', '<color en hex>'
-    username    - tiene valores agregados por default de acuerdo a la petición
+###### Parametros
+1. text        - Requerido
+2. title       - Opcional
+3. footer      - Opcional
+4. status      - Opcional
+5. username    - Opcional
 
--Funciones deplegadas
-    deploy
-    pull-request
-    notification
+###### Posibles valores
+- status      -'good'(valor por default*), 'warning', 'danger', '<color en hex>'
+- username    - tiene valores agregados por default de acuerdo a la petición
 
--Invocación de las funciones
+## Funciones deplegadas
+- deploy
+- pull-request
+- notification
+
+## Invocación de las funciones
 
     ./notification.py --text="El despligue de en las instancias de produccion se ha realizado con exito" --footer="WAR 2.6.12" deploy
     ./notification.py --text="Ocurrio un problema con el ultimo WAR no inicia session" --footer="WAR 2.6.12" --status="danger" deploy
@@ -42,5 +40,3 @@ chmod +x notification.py
 
     ./notification.py --text="Este solo es un mensaje para el grupo" notification
     ./notification.py --text="Este solo es un mensaje para el grupo" --username="Terminal Unix" notification
-
-
