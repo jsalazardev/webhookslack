@@ -1,33 +1,50 @@
-# notificationSlack
-Notificaciones en web hook slack
+# NotificationSlack
 
-#install library
-python -m pip install requests --user --no-warn-script-location
-python -m pip install fire --user --no-warn-script-location
+## Install library
 
-#add permission run after clone repository
-chmod +x notification.py
+- python -m pip install requests --user --no-warn-script-location
+- python -m pip install fire --user --no-warn-script-location
+- python -m pip install configparser --user --no-warn-script-location
 
-#Modo de uso
-Despues de otorgar permisos para ejecucion, los parametros que reciben son:
-    text    -Requerido
-    title   -Opcional
-    footer  -Opcional
-    status  -Opcional   ['good' *valor por default, 'warning', 'danger', '<color en hex>']
+## Add permission run after clone repository
 
-Funciones deplegadas
-    deploy
-    pull-request
-    notification
+- chmod +x notification.py
 
-Invocación de las funciones
+# Modo de uso
 
-    ./notification.py --text="El despligue de en las instancias de produccion se ha realizado con exito" --footer="WAR 2.6.12" deploy
-    ./notification.py --text="Ocurrio un problema con el ultimo WAR no inicia session" --footer="WAR 2.6.12" --status="danger" deploy
+## Parametros de la aplicación
 
-    ./notification.py --text="Se solicita el siguiente pull-request" --title="Solicitud de pull-request CodeCommit"--footer="feature-new-user -> dev" pull-request
-    ./notification.py --text="El pull request tiene unos detalles que correguir antes de confirmar"--footer="feature-payments -> dev" --status="warning" pull-request
+###### Parametros
+1. text        - Requerido
+2. title       - Opcional
+3. footer      - Opcional
+4. status      - Opcional
+5. username    - Opcional
 
-    ./notification.py --text="Este solo es un mensaje para el grupo" notification
+###### Posibles valores
+- status
+  - good    [green] 'valor por default'
+  - warning [yellow]
+  - danger  [red]
+  - [add color hex]
 
+- username
+  - deploy          [Amazon EC2]
+  - pull-request    [Amazon CodeCommit]
+  - notification    [Application]
 
+## Funciones deplegadas
+- deploy
+- pull-request
+- notification
+
+## Invocación de las funciones
+- deploy
+  - notification.py --text="El despligue de en las instancias de produccion se ha realizado con exito" --footer="WAR 2.6.12" deploy
+  - notification.py --text="Ocurrio un problema con el ultimo WAR no inicia session" --footer="WAR 2.6.12" --status="danger" deploy
+- pull-request
+  - notification.py --text="Se solicita el siguiente pull-request" --title="Solicitud de pull-request CodeCommit"--footer="feature-new-user -> dev" pull-request
+  - notification.py --text="El pull request tiene unos detalles que correguir antes de confirmar"--footer="feature-payments -> dev" --status="warning" pull-request
+- notification
+  - notification.py --text="Este solo es un mensaje para el grupo" notification
+  - notification.py --text="Este solo es un mensaje para el grupo" --username="Terminal Unix" notification
