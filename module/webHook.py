@@ -1,8 +1,10 @@
 # Import Libraries
 import requests
+import configparser
+from module.readConfig import read_config
 
 # set variables globals
-webhook_url = 'https://hooks.slack.com/services/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'
+pathConfig = 'module/config.ini'
 headers = {'Content-Type': 'application/json'}
 
 
@@ -13,8 +15,9 @@ def verify_result(response):
             'Request to slack returned an error %s, the response is:\n%s' % (response.status_code, response.text))
 
 
-def build_message(text, title, footer, status):
+def build_message(text, title, footer, status, username):
     return {
+        'username': username,
         'attachments': [{
             'color': status,
             'title': title,
@@ -24,7 +27,27 @@ def build_message(text, title, footer, status):
     }
 
 
-def send_message_to_slack(text, title, footer, status):
-    slack_data = build_message(text, title, footer, status)
-    response = requests.post(webhook_url, json=slack_data, headers=headers)
+def read_parameters():
+    params = None
+    config = read_config(pathConfig)
+    if config is None:
+        return params
+    try:
+        env = config.get('branch', 'env')
+        url = config.get(env+'.webhook', 'url')
+        params = {
+            'url': url
+        }
+    except configparser.NoSectionError, configparser.NoOptionError:
+        print ('Lo parametros indicados no existen')
+    return params
+
+
+def send_message_to_slack(text, title, footer, status, username):
+    params = read_parameters()
+    if params is None:
+        print('Lo sentimos, no se encontraron los parametros iniciales')
+        return
+    slack_data = build_message(text, title, footer, status, username)
+    response = requests.post(params['url'], json=slack_data, headers=headers)
     verify_result(response)
