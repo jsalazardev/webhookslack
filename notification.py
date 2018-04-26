@@ -32,7 +32,7 @@ class Notification(object):
             'footer': 'Merge {footer} '.format(footer='dev' if self._footer == '' else self._footer),
             'status': self._status,
             'username': 'Amazon CodeCommit' if self._username == '' else self._username,
-            'field':'' if self._field == '' else {'title':'Url', 'value':'<'+self._field+'>'}
+            'field':'' if self._field == '' else self._field
         }
         send_message_to_slack(**params)
 
@@ -54,7 +54,7 @@ class Notification(object):
             'footer': 'Version {footer} '.format(footer='' if self._footer == '' else self._footer),
             'status': self._status,
             'username': 'S3 build war' if self._username == '' else self._username,
-            'field':'' if self._field == '' else self._field
+            'field':'' if self._field == '' else {'title':'Url', 'value':'<'+self._field+'>'}
         }
         send_message_to_slack(**params)
 
