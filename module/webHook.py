@@ -22,7 +22,7 @@ def build_message(text, title, footer, status, username,field):
             'color': status,
             'title': title,
             'text': text,
-            'field':'' if field=='' else field,
+            'fields': '' if field=='' else field,
             'footer': footer
         }]
     }
