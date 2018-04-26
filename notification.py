@@ -32,7 +32,7 @@ class Notification(object):
             'footer': 'Merge {footer} '.format(footer='dev' if self._footer == '' else self._footer),
             'status': self._status,
             'username': 'Amazon CodeCommit' if self._username == '' else self._username,
-            'field':'' if self._field == '' else {'title':'Url', 'value':'<'+self._field+'>'
+            'field':'' if self._field == '' else {'title':'Url', 'value':'<'+self._field+'>'}
         }
         send_message_to_slack(**params)
 
@@ -47,7 +47,7 @@ class Notification(object):
         }
         send_message_to_slack(**params)
         
-            def war(self):
+    def war(self):
         params = {
             'text': self._text,
             'title': 'Build WAR ' if self._title == '' else self._title,
