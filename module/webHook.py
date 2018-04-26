@@ -15,13 +15,14 @@ def verify_result(response):
             'Request to slack returned an error %s, the response is:\n%s' % (response.status_code, response.text))
 
 
-def build_message(text, title, footer, status, username):
+def build_message(text, title, footer, status, username,field):
     return {
         'username': username,
         'attachments': [{
             'color': status,
             'title': title,
             'text': text,
+            'field':'' if field=='' else field
             'footer': footer
         }]
     }
