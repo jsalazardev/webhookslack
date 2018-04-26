@@ -2,9 +2,9 @@
 
 ## Install library
 
-- python -m pip install requests --user --no-warn-script-location
-- python -m pip install fire --user --no-warn-script-location
-- python -m pip install configparser --user --no-warn-script-location
+- python -m pip install requests --user
+- python -m pip install fire --user
+- python -m pip install configparser --user
 
 ## Add permission run after clone repository
 
@@ -20,6 +20,7 @@
 3. footer      - Opcional
 4. status      - Opcional
 5. username    - Opcional
+6. field       - Opcional
 
 ###### Posibles valores
 - status
@@ -36,6 +37,7 @@
 ## Funciones deplegadas
 - deploy
 - pull-request
+- war
 - notification
 
 ## Invocación de las funciones
@@ -45,6 +47,8 @@
 - pull-request
   - notification.py --text="Se solicita el siguiente pull-request" --title="Solicitud de pull-request CodeCommit"--footer="feature-new-user -> dev" pull-request
   - notification.py --text="El pull request tiene unos detalles que correguir antes de confirmar"--footer="feature-payments -> dev" --status="warning" pull-request
+- war
+  - notification.py --text="Se ha creado el siguiente war para despliegue" --field="http://host.domain.com" --footer="2.5.4" war
 - notification
   - notification.py --text="Este solo es un mensaje para el grupo" notification
   - notification.py --text="Este solo es un mensaje para el grupo" --username="Terminal Unix" notification
