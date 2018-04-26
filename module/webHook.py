@@ -15,13 +15,14 @@ def verify_result(response):
             'Request to slack returned an error %s, the response is:\n%s' % (response.status_code, response.text))
 
 
-def build_message(text, title, footer, status, username):
+def build_message(text, title, footer, status, username,field):
     return {
         'username': username,
         'attachments': [{
             'color': status,
             'title': title,
             'text': text,
+            'fields': '' if field=='' else field,
             'footer': footer
         }]
     }
@@ -43,11 +44,11 @@ def read_parameters():
     return params
 
 
-def send_message_to_slack(text, title, footer, status, username):
+def send_message_to_slack(text, title, footer, status, username, field):
     params = read_parameters()
     if params is None:
         print('Lo sentimos, no se encontraron los parametros iniciales')
         return
-    slack_data = build_message(text, title, footer, status, username)
+    slack_data = build_message(text, title, footer, status, username, field)
     response = requests.post(params['url'], json=slack_data, headers=headers)
     verify_result(response)
