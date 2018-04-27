@@ -36,6 +36,17 @@ class Notification(object):
         }
         send_message_to_slack(**params)
 
+    def war(self):
+        params = {
+            'text': self._text,
+            'title': 'Build WAR ' if self._title == '' else self._title,
+            'footer': 'Version {footer} '.format(footer='' if self._footer == '' else self._footer),
+            'status': self._status,
+            'username': 'S3 build war' if self._username == '' else self._username,
+            'field':'' if self._field == '' else [{'title':'Url', 'value':'<'+self._field+'>'}]
+        }
+        send_message_to_slack(**params)
+
     def notification(self):
         params = {
             'text': self._text,
@@ -44,17 +55,6 @@ class Notification(object):
             'status': self._status,
             'username': 'Application' if self._username == '' else self._username,
             'field':'' if self._field == '' else self._field
-        }
-        send_message_to_slack(**params)
-        
-    def war(self):
-        params = {
-            'text': self._text,
-            'title': 'Build WAR ' if self._title == '' else self._title,
-            'footer': 'Version {footer} '.format(footer='' if self._footer == '' else self._footer),
-            'status': self._status,
-            'username': 'S3 build war' if self._username == '' else self._username,
-            'field':'' if self._field == '' else {'title':'Url', 'value':'<'+self._field+'>'}
         }
         send_message_to_slack(**params)
 
