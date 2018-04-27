@@ -1,7 +1,7 @@
 #!/usr/bin/env python2.7
 # Import Libraries
 import fire
-import module.user as user
+import module.User
 
 class IngestionStage(object):
 
@@ -19,7 +19,7 @@ class DigestionStage(object):
 class Menu(object):
 
   def __init__(self):
-    self.user = user()
+    self.user = User()
     self.digestion = DigestionStage()
     
   def listUsers():
