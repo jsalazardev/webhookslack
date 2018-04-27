@@ -24,6 +24,9 @@ class Pipeline(object):
   def run(self):
     self.ingestion.run()
     self.digestion.run()
+    
+  def status():
+    self.digestion.status()
 
 if __name__ == '__main__':
   fire.Fire(Pipeline)
