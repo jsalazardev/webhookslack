@@ -1,6 +1,7 @@
 #!/usr/bin/env python2.7
 # Import Libraries
 import fire
+import module.user as user
 
 class IngestionStage(object):
 
@@ -15,18 +16,14 @@ class DigestionStage(object):
   def status(self):
     return 'Satiated.'
 
-class Pipeline(object):
+class Menu(object):
 
   def __init__(self):
-    self.ingestion = IngestionStage()
+    self.user = user()
     self.digestion = DigestionStage()
-
-  def run(self):
-    self.ingestion.run()
-    self.digestion.run()
     
-  def status():
-    self.digestion.status()
+  def listUsers():
+    self.user.list()
 
 if __name__ == '__main__':
-  fire.Fire(Pipeline)
+  fire.Fire(Menu)

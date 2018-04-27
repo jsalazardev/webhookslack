@@ -4,7 +4,7 @@ import configparser
 from module.readConfig import read_config
 
 # set variables globals
-pathConfig = 'module/config.ini'
+pathConfig = 'config/parameters.ini'
 headers = {'Content-Type': 'application/json'}
 
 
